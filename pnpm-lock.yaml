@@ -1,9 +1,5 @@
 lockfileVersion: '6.0'
 
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
-
 devDependencies:
   '@nuxt/devtools':
     specifier: latest
@@ -11,6 +7,9 @@ devDependencies:
   nuxt:
     specifier: ^3.8.2
     version: 3.8.2(vite@4.5.0)
+  nuxt-primevue:
+    specifier: ^0.2.0
+    version: 0.2.0(vue@3.3.8)
   vue:
     specifier: ^3.3.8
     version: 3.3.8
@@ -1297,6 +1296,7 @@ packages:
     dependencies:
       is-glob: 4.0.3
       micromatch: 4.0.5
+      napi-wasm: 1.1.0
     dev: true
     bundledDependencies:
       - napi-wasm
@@ -3905,6 +3905,10 @@ packages:
     hasBin: true
     dev: true
 
+  /napi-wasm@1.1.0:
+    resolution: {integrity: sha512-lHwIAJbmLSjF9VDRm9GoVOy9AGp3aIvkjv+Kvz9h16QR3uSVYH78PNQUnT2U4X53mhlnV2M7wrhibQ3GHicDmg==}
+    dev: true
+
   /negotiator@0.6.3:
     resolution: {integrity: sha512-+EUsqGPLsM+j/zdChZjsnX51g4XrHFOIXwfnCVPGlQk/k5giakcKsuxCObBRu6DSm9opw/O6slWbJdghQM4bBg==}
     engines: {node: '>= 0.6'}
@@ -4185,6 +4189,17 @@ packages:
     hasBin: true
     optionalDependencies:
       fsevents: 2.3.3
+    dev: true
+
+  /nuxt-primevue@0.2.0(vue@3.3.8):
+    resolution: {integrity: sha512-t/PwxerblyEqe1SCm3CtNxWGLni12lsf7C7XyakHLVHKslZXs5M0fwAHCX9dPsTSOzs74/zNh2CKHtLt4mXdnQ==}
+    dependencies:
+      '@nuxt/kit': 3.8.2
+      primevue: 3.41.0(vue@3.3.8)
+    transitivePeerDependencies:
+      - rollup
+      - supports-color
+      - vue
     dev: true
 
   /nuxt@3.8.2(vite@4.5.0):
@@ -4801,6 +4816,14 @@ packages:
   /pretty-bytes@6.1.1:
     resolution: {integrity: sha512-mQUvGU6aUFQ+rNvTIAcZuWGRT9a6f6Yrg9bHs4ImKF+HZCEK+plBvnAZYSIQztknZF2qnzNtr6F8s0+IuptdlQ==}
     engines: {node: ^14.13.1 || >=16.0.0}
+    dev: true
+
+  /primevue@3.41.0(vue@3.3.8):
+    resolution: {integrity: sha512-xdoB5JtAmam/05f2AbVdYA26XhHgeZZ4w+crQ5FZAeq3CkFL5tWjreWLwbtUWYhWimhdk9ZCrCvX/L+FjuWR/Q==}
+    peerDependencies:
+      vue: ^3.0.0
+    dependencies:
+      vue: 3.3.8
     dev: true
 
   /proc-log@3.0.0:
@@ -6098,3 +6121,7 @@ packages:
       compress-commons: 5.0.1
       readable-stream: 3.6.2
     dev: true
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
