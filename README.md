@@ -1,6 +1,7 @@
-# Nuxt 3 Minimal Starter
+# PREvant Payload Producer
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+P³ is a highly specialized tool which can be used to produce payload for
+[PREvant](https://github.com/aixigo/PREvant)s POST requests
 
 ## Requirements
 
