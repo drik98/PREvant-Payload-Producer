@@ -64,7 +64,7 @@ const { enableConfigToEnv } = useAppConfiguration()
       <div class="flex flex-wrap justify-content-between gap-2">
         <span class="text-xl text-900 font-bold flex-grow-1">Environment Variables</span>
         <PrimeButton
-          v-tooltip="'Click to add another environment variable.'"
+          v-tooltip="'Click to add an environment variable.'"
           raised
           rounded
           icon="pi pi-plus"
@@ -99,7 +99,7 @@ const { enableConfigToEnv } = useAppConfiguration()
             <i class="pi pi-key" />
           </PrimeInputGroupAddon>
           <PrimeInputText
-            v-tooltip="'Enter the key of the environment variable'"
+            v-tooltip.bottom="'Enter the key of the environment variable'"
             placeholder="MYSQL_USER"
             :disabled="slotProps.data.configKey != null"
             :model-value="slotProps.data.envKey"
@@ -117,7 +117,7 @@ const { enableConfigToEnv } = useAppConfiguration()
         <PrimeInputGroup>
           <PrimeInputGroupAddon>
             <PrimeCheckbox
-              v-tooltip="'Some services offer the possibility to use enviroment variables to overwrite the configurations. You can use this field to enter the key of the respective configuration value and it will be used to determine the environment variable key.'"
+              v-tooltip.bottom="'Some services offer the possibility to use enviroment variables to overwrite the configurations. You can use this field to enter the key of the respective configuration value and it will be used to determine the environment variable key.'"
               binary
               :model-value="slotProps.data.configKey != null"
               @input="enabled => toggleConfigKeyDisabled(slotProps.data, enabled)"
@@ -142,7 +142,7 @@ const { enableConfigToEnv } = useAppConfiguration()
           </PrimeInputGroupAddon>
           <PrimeInputText
             v-model="slotProps.data.value"
-            v-tooltip="'Enter the value of the environment variable'"
+            v-tooltip.bottom="'Enter the value of the environment variable'"
             placeholder="admin"
             @update:model-value="value => updateEnv(slotProps.data, { value })"
           />
@@ -154,7 +154,7 @@ const { enableConfigToEnv } = useAppConfiguration()
       <template #body="slotProps">
         <PrimeCheckbox
           v-model="slotProps.data.templated"
-          v-tooltip="'This should be checked when the value of the environment variable contains placeholders.'"
+          v-tooltip.left="'This should be checked when the value of the environment variable contains placeholders.'"
           binary
           @input="templated => updateEnv(slotProps.data, { templated })"
         />
@@ -165,7 +165,7 @@ const { enableConfigToEnv } = useAppConfiguration()
       <template #body="slotProps">
         <PrimeCheckbox
           v-model="slotProps.data.replicate"
-          v-tooltip="'This should be checked when the environment variable should also be applied when a new preview is created and is replicated from the preview that your are currently creating.'"
+          v-tooltip.left="'This should be checked when the environment variable should also be applied when a new preview is created and is replicated from the preview that your are currently creating.'"
           binary
           @input="replicate => updateEnv(slotProps.data, { replicate })"
         />

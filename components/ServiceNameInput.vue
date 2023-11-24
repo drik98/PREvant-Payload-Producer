@@ -27,7 +27,7 @@ const { setFilter, filteredSuggestions } = useAutoCompletionSuggestions(availabl
       </PrimeInputGroupAddon>
       <PrimeAutoComplete
         v-model.trim="serviceName"
-        v-tooltip="'Name of the service to start. Make sure the spelling is correct as some configurations or other services may depend on it.'"
+        v-tooltip.bottom="'Name of the service to start. Make sure the spelling is correct as some configurations or other services may depend on it.'"
         input-id="serviceName"
         placeholder="kafka"
         :suggestions="filteredSuggestions"

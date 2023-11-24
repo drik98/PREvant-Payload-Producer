@@ -23,7 +23,7 @@ function removeServiceConfig(serviceConfig: ServiceConfigModelValue) {
   <PrimePanel header="Service Configurations">
     <template #icons>
       <PrimeButton
-        v-tooltip="'Click to add another service to configure.'"
+        v-tooltip="'Click to add a service to configure.'"
         raised
         rounded
         icon="pi pi-plus"
@@ -35,7 +35,7 @@ function removeServiceConfig(serviceConfig: ServiceConfigModelValue) {
     <template #footer>
       <div class="flex align-items-center justify-content-end">
         <PrimeButton
-          v-tooltip="'Click to add another service to configure.'"
+          v-tooltip="'Click to add a service to configure.'"
           raised
           rounded
           icon="pi pi-plus"
@@ -62,3 +62,10 @@ function removeServiceConfig(serviceConfig: ServiceConfigModelValue) {
     </div>
   </PrimePanel>
 </template>
+
+<style>
+.p-tooltip {
+  width: 100em;
+  max-width: fit-content;
+}
+</style>

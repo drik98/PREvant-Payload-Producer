@@ -21,12 +21,14 @@ const emit = defineEmits<{
 <template>
   <PrimePanel :header="props.serviceName || 'New Service'">
     <template #icons>
-      <button
-        class="p-panel-header-icon p-link mr-2"
-        @click="() => emit('remove')"
-      >
-        <span class="pi pi-trash" />
-      </button>
+      <PrimeButton
+          v-tooltip="'Click to remove this service configuration.'"
+          raised
+          rounded
+          icon="pi pi-trash"
+          label="Remove"
+          @click="() => emit('remove')"
+        />
     </template>
     <div class="flex flex-column gap-3">
       <ServiceNameInput

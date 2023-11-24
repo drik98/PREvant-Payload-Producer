@@ -71,7 +71,7 @@ const { setFilter, filteredSuggestions } = useAutoCompletionSuggestions(availabl
         </PrimeInputGroupAddon>
         <PrimeAutoComplete
           v-model.trim="imageName"
-          v-tooltip="'The docker image with &lt;repo-name&gt;/&lt;hub-user&gt;/&lt;repo-name&gt;'"
+          v-tooltip.bottom="'The docker image following the schema &lt;repo-name&gt;/&lt;hub-user&gt;/&lt;repo-name&gt;'"
           input-id="imageName"
           placeholder="docker.io/confluentinc/cp-kafka"
           :suggestions="filteredSuggestions"
@@ -88,7 +88,7 @@ const { setFilter, filteredSuggestions } = useAutoCompletionSuggestions(availabl
         <PrimeInputText
           id="imageTag"
           v-model.trim="imageTag"
-          v-tooltip="'(Optional) tag for the selected docker image.'"
+          v-tooltip.bottom="'(Optional) tag for the selected docker image.'"
           placeholder="7.4.1"
         />
       </PrimeInputGroup>
