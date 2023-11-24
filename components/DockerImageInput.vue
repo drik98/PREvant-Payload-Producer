@@ -26,6 +26,13 @@ const fullImagePath = computed(() => {
   return `${imageName.value}:${imageTag.value}`
 })
 
+watch(
+  fullImagePath,
+  (fullImagePath) => {
+    emit('update:modelValue', fullImagePath)
+  },
+)
+
 // todo move to env variables
 const dockerImageByServiceName: Record<string, string> = {
   'kafka': 'docker.io/confluentinc/cp-kafka'
@@ -71,7 +78,6 @@ const { setFilter, filteredSuggestions } = useAutoCompletionSuggestions(availabl
           input-id="imageName"
           placeholder="docker.io/confluentinc/cp-kafka"
           :suggestions="filteredSuggestions"
-          @change="emit('update:modelValue', fullImagePath)"
           @complete="({ query }) => setFilter(query)"
         />
       </PrimeInputGroup>
@@ -87,7 +93,6 @@ const { setFilter, filteredSuggestions } = useAutoCompletionSuggestions(availabl
           v-model.trim="imageTag"
           v-tooltip="'(Optional) tag for the selected docker image.'"
           placeholder="7.4.1"
-          @update:model-value="emit('update:modelValue', fullImagePath)"
         />
       </PrimeInputGroup>
     </div>
