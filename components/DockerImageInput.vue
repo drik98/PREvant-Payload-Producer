@@ -39,7 +39,7 @@ watch(
   },
 )
 
-const availableImageNameSuggestions = computed(() => {
+const availableImageNameSuggestions = computed<string[]>(() => {
   return [...Object.entries(dockerImageByServiceName)]
     // sort selected serviceName always to the top
     .sort(([serviceName, imageName], [serviceName2, imageName2]) => {
@@ -54,15 +54,7 @@ const availableImageNameSuggestions = computed(() => {
     .map(([, imageName]) => imageName)
 })
 
-const filter = ref('')
-const filteredImageNameSuggestions = computed(() => {
-  return availableImageNameSuggestions.value
-    .filter(imageName => imageName.toLocaleLowerCase().includes(filter.value.toLocaleLowerCase()))
-})
-
-function filterImageNameSuggestions({ query }: { query: string }) {
-  filter.value = query
-}
+const { setFilter, filteredSuggestions } = useAutoCompletionSuggestions(availableImageNameSuggestions)
 </script>
 
 <template>
@@ -76,9 +68,11 @@ function filterImageNameSuggestions({ query }: { query: string }) {
         <PrimeAutoComplete
           v-model.trim="imageName"
           v-tooltip="'The docker image with &lt;repo-name&gt;/&lt;hub-user&gt;/&lt;repo-name&gt;'"
+          input-id="imageName"
           placeholder="docker.io/confluentinc/cp-kafka"
-          :suggestions="filteredImageNameSuggestions"
-          @complete="filterImageNameSuggestions"
+          :suggestions="filteredSuggestions"
+          @change="emit('update:modelValue', fullImagePath)"
+          @complete="({ query }) => setFilter(query)"
         />
       </PrimeInputGroup>
     </div>

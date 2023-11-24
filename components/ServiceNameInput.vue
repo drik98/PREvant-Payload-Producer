@@ -12,6 +12,15 @@ const serviceName = ref(props.modelValue)
 watch(() => props.modelValue, (newModelValue) => {
   serviceName.value = newModelValue
 })
+
+// todo move to env variables
+const dockerImageByServiceName: Record<string, string> = {
+  'kafka': 'docker.io/confluentinc/cp-kafka',
+}
+
+const availableServiceNameSuggestions = computed<string[]>(() => Object.keys(dockerImageByServiceName))
+
+const { setFilter, filteredSuggestions } = useAutoCompletionSuggestions(availableServiceNameSuggestions)
 </script>
 
 <template>
@@ -21,12 +30,14 @@ watch(() => props.modelValue, (newModelValue) => {
       <PrimeInputGroupAddon>
         <i class="pi pi-id-card" />
       </PrimeInputGroupAddon>
-      <PrimeInputText
-        id="serviceName"
+      <PrimeAutoComplete
         v-model.trim="serviceName"
         v-tooltip="'Name of the service to start. Make sure the spelling is correct as some configurations or other services may depend on it.'"
+        input-id="serviceName"
         placeholder="kafka"
-        @input="emit('update:modelValue', serviceName)"
+        :suggestions="filteredSuggestions"
+        @change="emit('update:modelValue', serviceName)"
+        @complete="({ query }) => setFilter(query)"
       />
     </PrimeInputGroup>
   </div>
