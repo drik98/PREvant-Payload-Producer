@@ -46,6 +46,8 @@ function updateConfigKeyOfEnv(currentValue: Env, configKey: string) {
 function toggleConfigKeyDisabled(env: Env, enabled: boolean) {
   updateEnv(env, { configKey: enabled ? '' : null })
 }
+
+const { enableConfigToEnv } = useAppConfiguration()
 </script>
 
 <template>
@@ -101,7 +103,10 @@ function toggleConfigKeyDisabled(env: Env, enabled: boolean) {
       </template>
     </PrimeColumn>
 
-    <PrimeColumn header="Configuration Key">
+    <PrimeColumn
+      v-if="enableConfigToEnv"
+      header="Configuration Key"
+    >
       <template #body="slotProps">
         <PrimeInputGroup>
           <PrimeInputGroupAddon>

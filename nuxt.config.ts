@@ -19,6 +19,7 @@ export default defineNuxtConfig({
     public: {
       dockerImageByServiceName: 'kafka:docker.io/confluentinc/cp-kafka,prevant:docker.io/aixigo/prevant',
       envConfigPrefix: 'NUXT_',
+      enableConfigToEnv: 'false',
     },
   },
 })
