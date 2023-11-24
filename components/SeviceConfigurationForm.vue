@@ -1,40 +1,47 @@
 <script setup lang="ts">
-import type { EnvValue } from '../types/PREvant'
+import type { Env } from './EnvInput.vue'
 
 export interface ModelValueType {
+  id: string
   serviceName: string
   image: string
-  env: Array<EnvValue & { id: string, envKey: string }>
+  env: Env[]
 }
+
+const props = defineProps<ModelValueType>()
 
 const emit = defineEmits<{
   (e: 'remove'): void
+  (e: 'update:serviceName', serviceName: string): void
+  (e: 'update:image', image: string): void
+  (e: 'update:env', env: Env[]): void
 }>()
-
-const serviceConfig = ref<ModelValueType>({
-  serviceName: '',
-  image: '',
-  env: [],
-})
 </script>
 
 <template>
-  <PrimePanel :header="serviceConfig.serviceName || 'New Service'">
+  <PrimePanel :header="props.serviceName || 'New Service'">
     <template #icons>
       <button
         class="p-panel-header-icon p-link mr-2"
-        @click="() => $emit('remove')"
+        @click="() => emit('remove')"
       >
         <span class="pi pi-trash" />
       </button>
     </template>
     <div class="flex flex-column gap-3">
-      <ServiceNameInput v-model="serviceConfig.serviceName" />
-      <DockerImageInput
-        v-model="serviceConfig.image"
-        :service-name="serviceConfig.serviceName"
+      <ServiceNameInput
+        :model-value="props.serviceName"
+        @update:model-value="serviceName => emit('update:serviceName', serviceName)"
       />
-      <EnvInput v-model="serviceConfig.env" />
+      <DockerImageInput
+        :model-value="props.image"
+        :service-name="props.serviceName"
+        @update:model-value="image => emit('update:image', image)"
+      />
+      <EnvInput
+        :model-value="props.env"
+        @update:model-value="env => emit('update:env', env)"
+      />
     </div>
   </PrimePanel>
 </template>

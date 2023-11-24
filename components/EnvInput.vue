@@ -14,7 +14,10 @@ const emit = defineEmits<{
 }>()
 
 function addEnv() {
-  emit('update:modelValue', [...props.modelValue, { id: uuidv4(), envKey: '', value: '', templated: false, replicate: true }])
+  emit('update:modelValue', [
+    ...props.modelValue,
+    { id: uuidv4(), envKey: '', value: '', templated: false, replicate: true },
+  ])
 }
 
 const selectedEnvs = ref<Env[]>([])
@@ -64,6 +67,7 @@ const { enableConfigToEnv } = useAppConfiguration()
           raised
           rounded
           icon="pi pi-plus"
+          label="Add"
           @click="addEnv"
         />
         <PrimeButton
@@ -71,6 +75,7 @@ const { enableConfigToEnv } = useAppConfiguration()
           raised
           rounded
           icon="pi pi-trash"
+          label="Remove"
           :disabled="selectedEnvs.length <= 0"
           @click="deleteSelectedEnvs"
         />
