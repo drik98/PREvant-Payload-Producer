@@ -13,13 +13,8 @@ watch(() => props.modelValue, (newModelValue) => {
   serviceName.value = newModelValue
 })
 
-// todo move to env variables
-const dockerImageByServiceName: Record<string, string> = {
-  'kafka': 'docker.io/confluentinc/cp-kafka',
-}
-
+const { dockerImageByServiceName } = useAppConfiguration()
 const availableServiceNameSuggestions = computed<string[]>(() => Object.keys(dockerImageByServiceName))
-
 const { setFilter, filteredSuggestions } = useAutoCompletionSuggestions(availableServiceNameSuggestions)
 </script>
 

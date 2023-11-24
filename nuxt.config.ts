@@ -15,4 +15,10 @@ export default defineNuxtConfig({
       prefix: 'Prime',
     },
   },
+  runtimeConfig: {
+    public: {
+      dockerImageByServiceName: 'kafka:docker.io/confluentinc/cp-kafka,prevant:docker.io/aixigo/prevant',
+      envConfigPrefix: 'NUXT_',
+    },
+  },
 })

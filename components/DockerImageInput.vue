@@ -33,10 +33,7 @@ watch(
   },
 )
 
-// todo move to env variables
-const dockerImageByServiceName: Record<string, string> = {
-  'kafka': 'docker.io/confluentinc/cp-kafka'
-}
+const { dockerImageByServiceName } = useAppConfiguration()
 
 watch(
   () => props.serviceName,

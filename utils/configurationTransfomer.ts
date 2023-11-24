@@ -1,5 +1,7 @@
 export default function (configKey: string): string {
-  let envKey = 'SPRING_'
+  const { envConfigPrefix } = useAppConfiguration()
+
+  let envKey = envConfigPrefix
 
   // Counts successive characters of same case
   let k = 0
