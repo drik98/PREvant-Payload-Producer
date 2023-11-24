@@ -1,5 +1,5 @@
 <template>
   <div>
-    <PrimeButton>My first VuePrime Component</PrimeButton>
+    <SeviceConfigurationForm />
   </div>
 </template>
