@@ -57,6 +57,7 @@ const { enableConfigToEnv } = useAppConfiguration()
   <PrimeDataTable
     v-model:selection="selectedEnvs"
     data-key="id"
+    resizable-columns
     :value="modelValue"
   >
     <template #header>
