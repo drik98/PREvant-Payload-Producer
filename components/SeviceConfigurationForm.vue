@@ -28,13 +28,13 @@ const serviceConfig = ref<ModelValueType>({
         <span class="pi pi-trash" />
       </button>
     </template>
-    <ServiceNameInput v-model="serviceConfig.serviceName" />
-    <br>
-    <DockerImageInput
-      v-model="serviceConfig.image"
-      :service-name="serviceConfig.serviceName"
-    />
-    <br>
-    <EnvInput v-model="serviceConfig.env" />
+    <div class="flex flex-column gap-3">
+      <ServiceNameInput v-model="serviceConfig.serviceName" />
+      <DockerImageInput
+        v-model="serviceConfig.image"
+        :service-name="serviceConfig.serviceName"
+      />
+      <EnvInput v-model="serviceConfig.env" />
+    </div>
   </PrimePanel>
 </template>
