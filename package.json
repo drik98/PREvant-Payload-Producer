@@ -7,22 +7,32 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
+    "prepare": "nuxt prepare",
+    "postinstall": "run-s prepare generate-types generate-json-schema",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "generate-types": "run-p generate-types:**",
+    "generate-types:prevant": "openapi --input https://raw.githubusercontent.com/drik98/PREvant/master/api/res/openapi.yml -o ./generated/types/prevant",
+    "generate-json-schema": "run-p generate-json-schema:**",
+    "generate-json-schema:prevant-service-config": "ts-json-schema-generator --path './generated/types/prevant/models/ServiceConfiguration.ts' --type 'ServiceConfiguration' --out './generated/json-schema/ServiceConfiguration.json'"
   },
   "dependencies": {
+    "json-editor-vue": "^0.11.1",
     "primeflex": "^3.3.1",
     "primeicons": "^6.0.1",
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "vanilla-jsoneditor": "^0.19.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.0.0",
     "@nuxt/devtools": "latest",
     "@types/uuid": "^9.0.7",
     "eslint": "^8.54.0",
+    "npm-run-all": "^4.1.5",
     "nuxt": "^3.8.2",
     "nuxt-primevue": "^0.2.0",
+    "openapi-typescript-codegen": "^0.25.0",
+    "ts-json-schema-generator": "^1.4.0",
     "vue": "^3.3.8",
     "vue-router": "^4.2.5"
   }

@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { v4 as uuidv4 } from 'uuid'
-import type { ModelValueType as ServiceConfigModelValue } from './components/SeviceConfigurationForm.vue'
+import { fromPrevantServiceConfigs } from './types/modelValues'
+import type { ServiceConfigModel } from './types/modelValues'
+import type { ServiceConfiguration } from './generated/types/prevant'
 
-const serviceConfigurations = ref<ServiceConfigModelValue[]>([])
+const serviceConfigurations = ref<ServiceConfigModel[]>([])
 addServiceConfig()
 
 function addServiceConfig() {
@@ -14,35 +16,33 @@ function addServiceConfig() {
   })
 }
 
-function removeServiceConfig(serviceConfig: ServiceConfigModelValue) {
+function removeServiceConfig(serviceConfig: ServiceConfigModel) {
   serviceConfigurations.value = serviceConfigurations.value.filter(({ id }) => id !== serviceConfig.id)
+}
+
+function handleImport(prevantServiceConfigs: ServiceConfiguration[]) {
+  serviceConfigurations.value = fromPrevantServiceConfigs(prevantServiceConfigs)
 }
 </script>
 
 <template>
+  <PrimeToast />
   <PrimePanel header="Service Configurations">
     <template #icons>
-      <PrimeButton
-        v-tooltip="'Click to add a service to configure.'"
-        raised
-        rounded
-        icon="pi pi-plus"
-        label="Add"
-        @click="addServiceConfig"
+      <ServiceConfigButtons
+        :service-configurations="serviceConfigurations"
+        @add-service-config="addServiceConfig"
+        @import="handleImport"
       />
     </template>
 
     <template #footer>
-      <div class="flex align-items-center justify-content-end">
-        <PrimeButton
-          v-tooltip="'Click to add a service to configure.'"
-          raised
-          rounded
-          icon="pi pi-plus"
-          label="Add"
-          @click="addServiceConfig"
-        />
-      </div>
+      <ServiceConfigButtons
+        class="justify-content-end"
+        :service-configurations="serviceConfigurations"
+        @add-service-config="addServiceConfig"
+        @import="handleImport"
+      />
     </template>
 
     <div class="flex flex-column gap-3">

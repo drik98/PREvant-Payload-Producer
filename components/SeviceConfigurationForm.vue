@@ -1,20 +1,13 @@
 <script setup lang="ts">
-import type { Env } from './EnvInput.vue'
+import type { EnvModel, ServiceConfigModel } from '../types/modelValues'
 
-export interface ModelValueType {
-  id: string
-  serviceName: string
-  image: string
-  env: Env[]
-}
-
-const props = defineProps<ModelValueType>()
+const props = defineProps<ServiceConfigModel>()
 
 const emit = defineEmits<{
   (e: 'remove'): void
   (e: 'update:serviceName', serviceName: string): void
   (e: 'update:image', image: string): void
-  (e: 'update:env', env: Env[]): void
+  (e: 'update:env', env: EnvModel[]): void
 }>()
 </script>
 
@@ -22,13 +15,13 @@ const emit = defineEmits<{
   <PrimePanel :header="props.serviceName || 'New Service'">
     <template #icons>
       <PrimeButton
-          v-tooltip="'Click to remove this service configuration.'"
-          raised
-          rounded
-          icon="pi pi-trash"
-          label="Remove"
-          @click="() => emit('remove')"
-        />
+        v-tooltip="'Click to remove this service configuration.'"
+        raised
+        rounded
+        icon="pi pi-trash"
+        label="Remove"
+        @click="() => emit('remove')"
+      />
     </template>
     <div class="flex flex-column gap-3">
       <ServiceNameInput

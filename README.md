@@ -16,6 +16,10 @@ Make sure to install the dependencies:
 pnpm install
 ```
 
+This is also necessary because in the postinstall step types will be auto generated from the PREvant openAPI
+specs. Moreover the corresponding json schema is also generated from the generated types and will be used to
+validate the imported payloads.
+
 ## Development Server
 
 Start the development server on `http://localhost:3000`:

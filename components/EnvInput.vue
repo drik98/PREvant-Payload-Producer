@@ -1,26 +1,24 @@
 <script setup lang="ts">
 import { v4 as uuidv4 } from 'uuid'
-import type { EnvValue } from '../types/PREvant'
+import type { EnvModel } from '../types/modelValues'
 import configurationTransfomer from '~/utils/configurationTransfomer'
 
-export type Env = EnvValue & { id: string, envKey: string, configKey?: string | null }
-
 const props = defineProps<{
-  modelValue: Env[]
+  modelValue: EnvModel[]
 }>()
 
 const emit = defineEmits<{
-  (e: 'update:modelValue', value: Env[]): void
+  (e: 'update:modelValue', value: EnvModel[]): void
 }>()
 
 function addEnv() {
   emit('update:modelValue', [
     ...props.modelValue,
-    { id: uuidv4(), envKey: '', value: '', templated: false, replicate: true },
+    { id: uuidv4(), envKey: '', envValue: '', templated: false, replicate: true },
   ])
 }
 
-const selectedEnvs = ref<Env[]>([])
+const selectedEnvs = ref<EnvModel[]>([])
 
 function deleteSelectedEnvs() {
   emit(
@@ -30,7 +28,7 @@ function deleteSelectedEnvs() {
   selectedEnvs.value = []
 }
 
-function updateEnv(currentValue: Env, payload: Partial<Omit<Env, 'id'>>) {
+function updateEnv(currentValue: EnvModel, payload: Partial<Omit<EnvModel, 'id'>>) {
   emit(
     'update:modelValue',
     props.modelValue.map((env) => {
@@ -42,11 +40,11 @@ function updateEnv(currentValue: Env, payload: Partial<Omit<Env, 'id'>>) {
   )
 }
 
-function updateConfigKeyOfEnv(currentValue: Env, configKey: string) {
+function updateConfigKeyOfEnv(currentValue: EnvModel, configKey: string) {
   updateEnv(currentValue, { configKey, envKey: configurationTransfomer(configKey) })
 }
 
-function toggleConfigKeyDisabled(env: Env, enabled: boolean) {
+function toggleConfigKeyDisabled(env: EnvModel, enabled: boolean) {
   updateEnv(env, { configKey: enabled ? '' : null })
 }
 
@@ -56,8 +54,8 @@ const { enableConfigToEnv } = useAppConfiguration()
 <template>
   <PrimeDataTable
     v-model:selection="selectedEnvs"
-    data-key="id"
     resizable-columns
+    data-key="id"
     :value="modelValue"
   >
     <template #header>
@@ -141,10 +139,10 @@ const { enableConfigToEnv } = useAppConfiguration()
             <i class="pi pi-database" />
           </PrimeInputGroupAddon>
           <PrimeInputText
-            v-model="slotProps.data.value"
+            v-model="slotProps.data.envValue"
             v-tooltip.bottom="'Enter the value of the environment variable'"
             placeholder="admin"
-            @update:model-value="value => updateEnv(slotProps.data, { value })"
+            @update:model-value="envValue => updateEnv(slotProps.data, { envValue })"
           />
         </PrimeInputGroup>
       </template>
