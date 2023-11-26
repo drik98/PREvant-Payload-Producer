@@ -10,6 +10,12 @@ export default defineNuxtConfig({
   modules: [
     'nuxt-primevue',
   ],
+  components: [
+    {
+      path: '~/components',
+      pathPrefix: false,
+    },
+  ],
   primevue: {
     components: {
       prefix: 'Prime',

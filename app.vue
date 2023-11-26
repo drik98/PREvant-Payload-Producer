@@ -26,41 +26,42 @@ function handleImport(prevantServiceConfigs: ServiceConfiguration[]) {
 </script>
 
 <template>
-  <PrimeToast />
-  <PrimePanel header="Service Configurations">
-    <template #icons>
-      <ServiceConfigButtons
-        :service-configurations="serviceConfigurations"
-        @add-service-config="addServiceConfig"
-        @import="handleImport"
-      />
-    </template>
-
-    <template #footer>
-      <ServiceConfigButtons
-        class="justify-content-end"
-        :service-configurations="serviceConfigurations"
-        @add-service-config="addServiceConfig"
-        @import="handleImport"
-      />
-    </template>
-
-    <div class="flex flex-column gap-3">
-      <template v-if="!serviceConfigurations.length">
-        There is currently no service to configure present. Click on one of the "Add"-Buttons to add one.
+  <NuxtLayout>
+    <PrimePanel header="Service Configurations">
+      <template #icons>
+        <ServiceConfigButtons
+          :service-configurations="serviceConfigurations"
+          @add-service-config="addServiceConfig"
+          @import="handleImport"
+        />
       </template>
-      <SeviceConfigurationForm
-        v-for="serviceConfig in serviceConfigurations"
-        v-else
-        :key="serviceConfig.id"
-        v-bind="serviceConfig"
-        v-model:env="serviceConfig.env"
-        v-model:image="serviceConfig.image"
-        v-model:serviceName="serviceConfig.serviceName"
-        @remove="() => removeServiceConfig(serviceConfig)"
-      />
-    </div>
-  </PrimePanel>
+
+      <template #footer>
+        <ServiceConfigButtons
+          class="justify-content-end"
+          :service-configurations="serviceConfigurations"
+          @add-service-config="addServiceConfig"
+          @import="handleImport"
+        />
+      </template>
+
+      <div class="flex flex-column gap-3">
+        <template v-if="!serviceConfigurations.length">
+          There is currently no service to configure present. Click on one of the "Add"-Buttons to add one.
+        </template>
+        <SeviceConfigurationForm
+          v-for="serviceConfig in serviceConfigurations"
+          v-else
+          :key="serviceConfig.id"
+          v-bind="serviceConfig"
+          v-model:env="serviceConfig.env"
+          v-model:image="serviceConfig.image"
+          v-model:serviceName="serviceConfig.serviceName"
+          @remove="() => removeServiceConfig(serviceConfig)"
+        />
+      </div>
+    </PrimePanel>
+  </NuxtLayout>
 </template>
 
 <style>
