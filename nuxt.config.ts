@@ -15,6 +15,18 @@ export default defineNuxtConfig({
       prefix: 'Prime',
     },
   },
+  app: {
+    head: {
+      title: 'PREvant Payload Producer',
+      htmlAttrs: {
+        lang: 'en',
+      },
+      meta: [
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      ],
+      noscript: [{ children: 'Javascript is required' }],
+    },
+  },
   runtimeConfig: {
     public: {
       dockerImageByServiceName: 'kafka:docker.io/confluentinc/cp-kafka,prevant:docker.io/aixigo/prevant',

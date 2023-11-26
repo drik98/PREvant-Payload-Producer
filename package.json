@@ -1,5 +1,11 @@
 {
-  "name": "nuxt-app",
+  "name": "@drik98/prevant-payload-producer",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/drik98/PREvant-Payload-Producer"
+  },
+  "packageManager": "pnpm@8.1.0",
   "type": "module",
   "private": true,
   "scripts": {
