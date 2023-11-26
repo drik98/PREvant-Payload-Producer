@@ -37,7 +37,7 @@ function downloadJsonFile() {
     v-tooltip.left="'Click on this button to open a dialog to export the generated service config payload.'"
     raised
     rounded
-    icon="pi pi-upload"
+    icon="pi pi-download"
     label="Export"
     @click="visible = true"
   />
