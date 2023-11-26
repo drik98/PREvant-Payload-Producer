@@ -2,8 +2,8 @@
 import 'vanilla-jsoneditor/themes/jse-theme-dark.css'
 import JsonEditorVue from 'json-editor-vue'
 import { useToast } from 'primevue/usetoast'
-import { toPrevantServiceConfigs } from '../types/modelValues'
-import type { ServiceConfigModel } from '../types/modelValues'
+import { toPrevantServiceConfigs } from '~/types/modelValues'
+import type { ServiceConfigModel } from '~/types/modelValues'
 
 const props = defineProps<{
   serviceConfigurations: ServiceConfigModel[]

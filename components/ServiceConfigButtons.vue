@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ServiceConfiguration } from '../generated/types/prevant'
+import type { ServiceConfiguration } from '~/generated/types/prevant'
 import type { ServiceConfigModel } from '~/types/modelValues'
 
 const props = defineProps<{

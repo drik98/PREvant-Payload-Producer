@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { EnvModel, ServiceConfigModel } from '../types/modelValues'
+import type { EnvModel, ServiceConfigModel } from '~/types/modelValues'
 
 const props = defineProps<ServiceConfigModel>()
 

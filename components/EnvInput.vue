@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { v4 as uuidv4 } from 'uuid'
-import type { EnvModel } from '../types/modelValues'
+import type { EnvModel } from '~/types/modelValues'
 import configurationTransfomer from '~/utils/configurationTransfomer'
 
 const props = defineProps<{

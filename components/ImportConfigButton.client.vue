@@ -3,8 +3,8 @@ import 'vanilla-jsoneditor/themes/jse-theme-dark.css'
 import JsonEditorVue from 'json-editor-vue'
 import { createAjvValidator } from 'vanilla-jsoneditor'
 import type { JSONSchema, JSONSchemaDefinitions, ValidationError, Validator } from 'vanilla-jsoneditor'
-import payloadJsonSchema from '../generated/json-schema/ServiceConfiguration.json'
-import type { ServiceConfiguration } from '../generated/types/prevant'
+import payloadJsonSchema from '~/generated/json-schema/ServiceConfiguration.json'
+import type { ServiceConfiguration } from '~/generated/types/prevant'
 
 const emit = defineEmits<{
   (e: 'import', value: ServiceConfiguration[]): void
