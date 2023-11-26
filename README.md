@@ -30,16 +30,21 @@ pnpm run dev
 
 ## Production
 
-Build the application for production:
+Build a static site which can be deployed for example with netlify.
 
 ```bash
-pnpm run build
+pnpm run generate
 ```
 
-Locally preview production build:
+## Configuration
 
-```bash
-pnpm run preview
-```
+It is possible to configure the app by providing some environment variables during the build:
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+| Environment Variable              | Description                                                                                                                                                                                                                                                                                                                                                                 | Default Value                                                            |
+|-----------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
+| NUXT_DOCKER_IMAGE_BY_SERVICE_NAME | Defines a lookup map for services that will be often deployed. It expects a comma-separated list of colon-separated key value pairs of the service name and the image (without the tag).  The service names will be used as suggestions when entering a service name and when such a service is entered the corresponding docker image will also be automatically selected. | `kafka:docker.io/confluentinc/cp-kafka,prevant:docker.io/aixigo/prevant` |
+| NUXT_ENABLE_CONFIG_TO_ENV         | The application offers the possibility to optionally enter a configuration key (e.g. `javax.persistence.jdbc.user`) and it will automatically try to turn it into an environment variable key (e.g. `JAVAX_PERSISTENCE_JDBC_USER`).  See also `NUXT_ENV_CONFIG_PREFIX`.                                                                                                      | `false`                                                                  |
+| NUXT_ENV_CONFIG_PREFIX            | As some tools like nuxt expect environment variables to be prefixed you can further use this env variable to add a prefix to the automagically determined  environment variable key (see `NUXT_ENABLE_CONFIG_TO_ENV`).                                                                                                                                                      | `NUXT_`                                                                  |
+
+
+As you probably noticed each variable has to be prefixed with `NUXT_`. See [nuxt docs](https://nuxt.com/docs/api/composables/use-runtime-config).
