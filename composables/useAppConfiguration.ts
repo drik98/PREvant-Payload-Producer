@@ -4,7 +4,7 @@ export default function () {
   return {
     ...runtimeConfig.public,
     dockerImageByServiceName: parseDockerImageByServiceName(runtimeConfig.public.dockerImageByServiceName),
-    enableConfigToEnv: runtimeConfig.public.enableConfigToEnv === 'true',
+    enableConfigToEnv: String(runtimeConfig.public.enableConfigToEnv) === 'true',
   }
 }
 

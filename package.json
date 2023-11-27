@@ -14,7 +14,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "prepare": "nuxt prepare",
-    "postinstall": "run-s prepare generate-types generate-json-schema",
+    "postinstall": "run-s generate-types generate-json-schema",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "generate-types": "run-p generate-types:**",
