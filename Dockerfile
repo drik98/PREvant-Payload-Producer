@@ -9,9 +9,9 @@ WORKDIR /app
 RUN pnpm install
 RUN pnpm run build
 
-EXPOSE 3000
+EXPOSE 8080
 
-ENV NUXT_HOST=0.0.0.0
-ENV NUXT_PORT=3000
+ENV HOST=0.0.0.0
+ENV PORT=8080
 
 CMD [ "node", ".output/server/index.mjs" ]
