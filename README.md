@@ -72,7 +72,7 @@ variables described in [Configuration](#configuration) to customize your app.
 
 services:
   prevant-payload-producer:
-    image: prevant-payload-producer
+    image: hendriksmtz/prevant-payload-producer:latest
     ports:
       - 3000:3000 
     environment:
